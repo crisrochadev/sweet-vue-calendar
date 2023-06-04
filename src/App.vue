@@ -1,18 +1,53 @@
 <template>
   <div
-    style="
-      width: 100%;
-      height: 100vh;
-      padding: 50px;
-      box-sizing: border-box;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    "
+    :style="{
+      width: '100%',
+      height: '100vh',
+      padding: '50px',
+      boxSizing: 'border-box',
+      overflow: 'hidden',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }"
   >
-    <div style="width: 100%; height: 100%">
-      <SweetVueCalendar :config="config" long-week />
+    <div
+      :style="{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }"
+    >
+      <SweetVueCalendar :config="config" long-week size="medium">
+      <template #week="{week}">
+        <p :style="{
+          backgroundColor:'blueviolet',
+          height:'30px',
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
+          color:'white',
+          fontSize:'8px',
+          textTransform:'uppercase',
+          fontFamily:'Roboto'
+        }">{{ week }}</p>
+      </template>
+      <template #day="{day}">
+        <p :style="{
+          backgroundColor:day.currentMonth ? 'blueviolet' : 'silver',
+          height:'100%',
+          display:'flex',
+          justifyContent:'center',
+          alignItems:'center',
+          color:'white',
+          fontSize:'20px',
+          textTransform:'uppercase',
+          fontFamily:'Roboto'
+        }">{{ day.value }}</p>
+      </template>
+      </SweetVueCalendar>
     </div>
   </div>
 </template>
@@ -25,8 +60,8 @@ export default {
     return {
       config: {
         locale: "pt-br",
-        formatDate:'DD/MM/YYYY',
-        formatTime:'HH:MM:mm',
+        formatDate: "DD/MM/YYYY",
+        formatTime: "HH:MM:mm",
         months: [
           "Janeiro",
           "Fevereiro",

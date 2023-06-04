@@ -1,8 +1,8 @@
 <template lang="">
   <div class="sweet-vue-calendar">
-    <div class="sweet-header">
+    <div class="sweet-header" :style="Object.keys(headerStyle).length > 0 ? headerStyle : {}">
       <slot
-        name="control"
+        name="header"
         :events="{
           next: () => next(),
           previous: () => previous(),
@@ -64,6 +64,10 @@ export default {
     size:{
       type:String,
       default:''
+    },
+    headerStyle:{
+      type:Object,
+      default:{}
     }
   },
   data() {
@@ -274,7 +278,7 @@ export default {
   background-color: rgb(230, 239, 247);
 }
 .sweet-day-off {
-  background: transparent;
+  background: white;
 }
 .sweet-week {
   background-color: aliceblue;
